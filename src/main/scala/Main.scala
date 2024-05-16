@@ -285,23 +285,6 @@ def myFoldLeft[A, B](list: List[A], startAcc: B)(func: (B, A) => B): B = {
 }
 
 /**
- * Ta funkcja robi to samo co map wbudowany (aka zamienia wszystkie elementy listy na coś innego):
- * {{{
- *   val lista = List("abc", "test", "foo", "tt", "x")
- *
- *   myMap(lista)(elem => elem.length)
- *   // to wyżej to to samo co to niżej
- *   lista.map(elem => elem.length)
- * }}}
- * @param list Lista wejściowa
- * @param func Funkcja przyjmująca jakiś element z listy `list` i zwracająca coś, na co ma go zamienić
- * @tparam A Typ wartości w liście wejściowej
- * @tparam B Typ wartości w liście wyjściowej
- * @return Lista `list`, której każdy element został zamieniony na to, co zwróciło `func` dla tego elementu
- */
-//def myMap[A, B](list: List[A])(func: A => B): List[B] = myReverse(myFoldLeft(list, Nil: List[B])((acc, elem) => func(elem) :: acc))
-
-/**
  * @param list Lista wejściowa
  * @param func Funkcja przyjmująca jakiś element z listy `list` i zwracająca coś, na co ma go zamienić
  * @tparam A Typ wartości w liście wejściowej
@@ -316,7 +299,7 @@ def myMap[A, B](list: List[A])(func: A => B): List[B] = {
       case Nil => myReverse(acc)
     }
   }
-  
+
   helper(list, Nil: List[B])
 }
 
