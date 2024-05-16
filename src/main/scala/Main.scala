@@ -299,7 +299,26 @@ def myFoldLeft[A, B](list: List[A], startAcc: B)(func: (B, A) => B): B = {
  * @tparam B Typ wartości w liście wyjściowej
  * @return Lista `list`, której każdy element został zamieniony na to, co zwróciło `func` dla tego elementu
  */
-def myMap[A, B](list: List[A])(func: A => B): List[B] = myReverse(myFoldLeft(list, Nil: List[B])((acc, elem) => func(elem) :: acc))
+//def myMap[A, B](list: List[A])(func: A => B): List[B] = myReverse(myFoldLeft(list, Nil: List[B])((acc, elem) => func(elem) :: acc))
+
+/**
+ * @param list Lista wejściowa
+ * @param func Funkcja przyjmująca jakiś element z listy `list` i zwracająca coś, na co ma go zamienić
+ * @tparam A Typ wartości w liście wejściowej
+ * @tparam B yp wartości w liście wyjściowej
+ * @return Lista `list`, której każdy element został zamieniony na to, co zwróciło `func` dla tego elementu
+ */
+def myMap[A, B](list: List[A])(func: A => B): List[B] = {
+  @tailrec
+  def helper(l: List[A], acc: List[B]): List[B] = {
+    l match {
+      case head :: tail => helper(tail, func(head) :: acc)
+      case Nil => myReverse(acc)
+    }
+  }
+  
+  helper(list, Nil: List[B])
+}
 
 @main
 def mainProg(): Unit = {
