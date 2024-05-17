@@ -86,5 +86,5 @@ Kroki dla przykładu:
     - weź `"x"`
     - wywołaj `func("x")`, co zwróci `"x".length`, czyli `1`
     - dodaj `1` na koniec listy `result` **(teraz: `result = List(3, 4, 3, 2, 1)`)**
-- skończyły się elementy z `List("abc", "test", "foo", "bar", "ab", "x")`, więc zwracamy cokolwiek jest w `result`, czyli `List(3, 4, 3, 2, 1)`
+- skończyły się elementy z `List("foo", "test", "bar", "ab", "x")`, więc zwracamy cokolwiek jest w `result`, czyli `List(3, 4, 3, 2, 1)`
   
